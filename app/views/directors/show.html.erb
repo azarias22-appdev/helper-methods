@@ -1,0 +1,51 @@
+<div>
+  <div>
+    <h1>
+      Director #<%= @director.id %> details
+    </h1>
+
+    <div>
+      <div>
+         <%= link_to 'Go back', directors_path %>
+      </div>
+
+      <div>
+         <%= link_to 'Edit Director', edit_director_path(@director) %>
+      </div>
+
+      <div>
+        <%= link_to "Delete director", director_path(@director), method: :delete %>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @director.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @director.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@director.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@director.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>

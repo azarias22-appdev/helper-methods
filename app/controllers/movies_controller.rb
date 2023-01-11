@@ -38,14 +38,12 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params.fetch(:id))
 
-    @movie.title = params.fetch(:title)
-    @movie.description = params.fetch(:description)
-
-    if @movie.valid?
-      @movie.save
-      redirect_to movie_url(@movie), notice: "Movie updated successfully." 
+    movie_params = params.require(:movie).permit(:title, :description)
+    
+    if @movie.update(movie_params)
+      redirect_to @movie, notice: "Movie updated successfully."
     else
-      redirect_to movie_url(@movie), alert: "Movie failed to update successfully."
+      render "edit", alert: "Movie failed to update successfully."
     end
   end
 
